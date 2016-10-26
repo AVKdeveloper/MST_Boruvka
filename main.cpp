@@ -12,9 +12,9 @@ int main()
 		Edge edge;
 		file >> edge.from_ >> edge.to_ >> edge.weight_;
 		graph.AddEdge(edge);
-	}
-
+	} // end of init graph
 	file.close();
+
 
 
 	file.open("kruskal.out", std::fstream::out);
