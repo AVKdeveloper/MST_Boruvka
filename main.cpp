@@ -11,14 +11,20 @@ int main()
 	for (int i = 0; i < number_of_edges; ++i) {
 		Edge edge;
 		file >> edge.from_ >> edge.to_ >> edge.weight_;
+		edge.from_--;
+		edge.to_--;
 		graph.AddEdge(edge);
 	} // end of init graph
 	file.close();
 
-
+	//start of the Boruvka's algorithm ->
+	std::unordered_set<Edge> mst_tree = graph.BuiltMstByBoruvka();
+	long long sum_of_weights = 0;
+	for (Edge edge : mst_tree) {
+		sum_of_weights += edge.weight_;
+	} // counted the sum - answer for owr task
 
 	file.open("kruskal.out", std::fstream::out);
-	
-
+	file << sum_of_weights; // output
 	file.close();
 }

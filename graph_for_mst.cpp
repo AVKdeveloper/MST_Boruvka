@@ -13,23 +13,12 @@ void GraphForMst::AddEdge(const Edge& edge) {
 	edges_.push_back(edge);
 }
 
-namespace std {
-	template<>
-	class hash<Edge> {
-	public:
-		size_t operator()(const Edge& edge) const {
-			hash<int> hash_for_int;
-			return hash_for_int(edge.weight_) & hash_for_int(edge.from_) & hash_for_int(edge.to_);
-		}
-	};
-}
-
 std::unordered_set<Edge> GraphForMst::BuiltMstByBoruvka() const {
 	DisjointSetUnion connected_components(number_of_vertices_);
 	for (int i = 0; i < number_of_vertices_; ++i) {
 		connected_components.MakeSet(i);
 	} // prepared components of connection for algorithm
-	std::vector<Edge> minimum_edge_for_component;
+	std::vector<Edge> minimum_edge_for_component(number_of_vertices_);
 	const int kInfinite = 200000; // the +oo (infinite)
 	std::unordered_set<Edge> edges_of_mst; // in the end it will be MST tree
 	while (edges_of_mst.size() < number_of_vertices_ - 1) {

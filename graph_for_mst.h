@@ -2,7 +2,7 @@
 #define GRAPH_FOR_MST
 
 #include <list>
-#include<unordered_set>
+#include <unordered_set>
 #include "disjoint_set_union.h"
 
 struct Edge {
@@ -12,6 +12,18 @@ struct Edge {
 
 	bool operator==(const Edge& another_edge) const;
 };
+
+namespace std {
+	template<>
+	class hash<Edge> {
+	public:
+		size_t operator()(const Edge& edge) const {
+			hash<int> hash_for_int;
+			return hash_for_int(edge.weight_) ^ hash_for_int(edge.from_) ^ hash_for_int(edge.to_);
+		}
+	};
+}
+
 
 class GraphForMst {
 	int number_of_vertices_;
