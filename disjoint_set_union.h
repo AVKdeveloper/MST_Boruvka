@@ -11,7 +11,6 @@ public:
 	void MakeSet(const int& element);
 	void UnionSets(const int& element1, const int& element2);
 	int FindSet(const int& element);
-
 };
 
 #endif

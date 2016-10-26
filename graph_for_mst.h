@@ -2,11 +2,15 @@
 #define GRAPH_FOR_MST
 
 #include <list>
+#include<unordered_set>
+#include "disjoint_set_union.h"
 
 struct Edge {
 	int from_;
 	int to_;
 	int weight_;
+
+	bool operator==(const Edge& another_edge) const;
 };
 
 class GraphForMst {
@@ -16,6 +20,7 @@ class GraphForMst {
 public:
 	GraphForMst(const int& number_of_vertices, const int& number_of_edges);
 	void AddEdge(const Edge& edge);
+	std::unordered_set<Edge> BuiltMstByBoruvka() const;
 };
 
 #endif
