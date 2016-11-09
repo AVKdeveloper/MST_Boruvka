@@ -1,3 +1,6 @@
+// This code finds minimum spanning tree in graph.
+// We use Boruvka's algorithm
+// O(ElogV)
 #include <fstream>
 #include "graph_for_mst.h"
 
